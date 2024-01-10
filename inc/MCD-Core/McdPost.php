@@ -194,8 +194,8 @@ class McdPost {
                 $htmlImage = '<img loading="lazy"';
                 $htmlImage .= 'class="single-post-thumbnail" ';
                 $htmlImage .= 'src="' . $image["src"] . '" ';
-                $htmlImage .= 'width="776" ';
-                $htmlImage .= 'height="433" ';
+                $htmlImage .= 'width="1200" ';
+                $htmlImage .= 'height="675" ';
                 $htmlImage .= 'title="' . get_the_title( $this->post_id ). '" ';
                 $htmlImage .= 'alt="' . get_the_excerpt(  ) . '" ';
                 $htmlImage .= 'decoding="async" ';
@@ -204,7 +204,7 @@ class McdPost {
                 return $htmlImage; 
             }, 10, 2 );
 
-            $html = mcd_html_image($post_thumbnail_id, [776, 433], 'full', false, '', 'high');
+            $html = mcd_html_image($post_thumbnail_id, [1200, 675], 'large', false, '', 'high');
             remove_all_filters( 'mcd_filter_html_image', 10 );
 
             return $html;

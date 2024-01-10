@@ -11,8 +11,8 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="absolute left-0 z-10 mt-4 min-w-[224px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none categories-wrapper" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                        <div class="py-1 categories-list" role="none">
+                    <div class="absolute left-0 z-10 mt-4 min-w-[224px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none categories-wrapper">
+                        <div class="py-1 categories-list">
                             <?php foreach (mcd_get_terms() as $key => $value) : ?>
                                 <button type="button" class="block px-4 py-2 text-[14px] font-darkerGrotesque text-[#001F22] category-item" id="<?php echo 'category-item-' . $value->term_id; ?>" data-slug="<?php echo $value->slug; ?>"><?php echo $value->name; ?></button>
                             <?php endforeach; ?>
@@ -27,7 +27,7 @@
                             focus:border-transparent focus:ring-transparent">
         </div>
         <input type="hidden" name="cat" value="all">
-        <button id="submit-search" type="submit" class="inline-flex p-[12px] gap-10 shrink-0">
+        <button id="submit-search" type="submit" class="inline-flex p-[12px] gap-10 shrink-0" title="Search">
             <img class="svg-img" src="<?php echo _RESOURCES_SVG . '/ico-search-white.svg' ?>" alt="Search">
         </button>
     </div>

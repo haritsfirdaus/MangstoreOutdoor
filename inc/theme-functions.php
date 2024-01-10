@@ -157,8 +157,8 @@ if (! function_exists('mcd_get_media_image')) {
         if ($image) {
             $mapping['icon'] = $icon;
             $mapping['src'] = $image[0] ;
-            $mapping['width'] = $size[1] ;
-            $mapping['height'] = $size[2] ;
+            $mapping['width'] = $size[0] ;
+            $mapping['height'] = $size[1] ;
             $mapping['srcset'] = wp_get_attachment_image_srcset( $imageID, $size) ;
             $mapping['meta_data'] = [
                 'title' => !empty(get_the_title($imageID)) ? get_the_title($imageID) : get_bloginfo( 'name' ),
@@ -183,8 +183,8 @@ if (! function_exists('mcd_get_media_image')) {
  * @return string html image
  */
 if (! function_exists('mcd_html_image')) {
-    function mcd_html_image($imageID, $size = [282,  170], $resolution = "medium", $icon = false, $classes = '', $priority = 'low'){
-        $image = mcd_get_media_image( $imageID, $resolution, $icon );
+    function mcd_html_image($imageID, $size = [282,  170], $resolution = "large", $icon = false, $classes = '', $priority = 'low'){
+        $image = mcd_get_media_image( $imageID, $size, $resolution, $icon );
         $htmlImage = '';
 
         if ($image) {
