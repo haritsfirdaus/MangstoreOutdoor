@@ -1,0 +1,235 @@
+<?php
+
+/**
+ * Functions which enhance the theme by hooking into WordPress
+ *
+ * @package mcd
+ */
+
+ 
+/**
+ * Die Print
+ * $value is Array data for print and die
+*/
+function dd($value){
+    echo '<pre>';
+    echo print_r($value);
+    echo '</pre>';
+    exit;
+    return;
+}
+
+/**
+ * Die Print
+ * $value is Array data for print 
+*/
+function pp($value){
+    echo '<pre>';
+    echo print_r($value);
+    echo '</pre>';
+    return;
+}
+
+/**
+ * Adds custom classes to the array of body classes.
+ *
+ * @param array $classes Classes for the body element.
+ * @return array
+ */
+if (! function_exists('mcd_body_classes')) {
+    function mcd_body_classes($classes)
+    {
+        // Adds a class of hfeed to non-singular pages.
+        if (!is_singular()) {
+            $classes[] = 'hfeed';
+        }
+    
+        // Adds a class of no-sidebar when there is no sidebar present.
+        if (!is_active_sidebar('sidebar-1')) {
+            $classes[] = 'no-sidebar';
+        }
+    
+        return $classes;
+    }
+}
+
+/**
+ * Add a pingback url auto-discovery header for single posts, pages, or attachments.
+ */
+if (! function_exists('mcd_pingback_header')) {
+    function mcd_pingback_header()
+    {
+        if (is_singular() && pings_open()) {
+            printf('<link rel="pingback" title="pingback" href="%s">', esc_url(get_bloginfo('pingback_url')));
+        }
+    }
+}
+
+if ( !function_exists( 'mcd_custom_logo' ) ){
+    function mcd_custom_logo(){
+        $default_logo = get_theme_mod( 'custom_logo' );
+        $default_logo = wp_get_attachment_image_url( $default_logo, 'full');
+
+        if ( !empty( $default_logo ) ) : ?>
+            <?php if (display_header_text()==true) : ?>
+                <a href="<?php echo esc_url( home_url() ); ?>" class="branding branding_logo branding_with_title"
+                    alt="<?php echo get_bloginfo( 'name' ); ?>"
+                    title="<?php echo get_bloginfo( 'name' ); ?>"
+                    >
+                    <img class="svg-img branding-logo" src="<?php echo $default_logo; ?>" 
+                        width="24.7px"
+                        height="19.41px"
+                        alt="<?php echo get_bloginfo( 'name' ); ?>"
+                        title="<?php echo get_bloginfo( 'name' ); ?>">
+                    <h4 class="font-roboto text-[20px] leading-normal text-[#001F22] font-bold"><?php echo get_bloginfo('name') ?></h4>
+                </a>
+            <?php else : ?>
+                <a href="<?php echo esc_url( home_url() ); ?>" class="branding branding_logo"
+                    alt="<?php echo get_bloginfo( 'name' ); ?>"
+                    title="<?php echo get_bloginfo( 'name' ); ?>">
+                    <img class="svg-img branding-logo" src="<?php echo $default_logo; ?>" 
+                        width="24.7"
+                        height="19.41px"
+                        alt="<?php echo get_bloginfo( 'name' ); ?>"
+                        title="<?php echo get_bloginfo( 'name' ); ?>">
+                </a>
+            <?php endif; ?>
+            
+        <?php else: ?>
+            <a class="branding no_logo" href="<?php echo esc_url( home_url(  ) ); ?>"
+                alt="<?php echo get_bloginfo( 'name' ); ?>"
+                title="<?php echo get_bloginfo( 'name' ); ?>">
+                <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+            </a>
+    <?php  endif;
+    }
+}
+
+/**
+ * Remap array positions
+ * @param array $array is Array data
+ * @param array or object $insert Data for inserting to array
+ * @param int $position is Integer for array index position
+ * 
+ * @return array new mapping array
+ */
+if (! function_exists('mcd_insertArrayAtPosition')) {
+    function mcd_insertArrayAtPosition($array, $insert, $position)
+    {
+        return array_slice($array, 0, $position, true) + $insert + array_slice($array, $position, null, true);
+    }
+}
+
+/**
+ * Remap array posts
+ * @param array $posts is Array posts data
+ * @param array $imageSize is array widht and hight image size
+ * @return array new mapping array
+ */
+if (! function_exists('mcd_mapping_posts_card')) {
+    function mcd_mapping_posts_card($posts){
+        if ($posts) {
+            $mapping_posts = [];
+            foreach ($posts as $key => $value) {
+                array_push($mapping_posts, mcd_mapping_post_card($value));
+            }
+
+            return $mapping_posts;
+        }
+        return false;
+    }
+}
+
+/**
+ * Get attachment media image datas
+ * @param int $imageID is media image ID
+ * @param array $size is variable for image sizes attributes
+ * @param string $resolution is media image size
+ * @param boolean $icon is variable for identifier image icon type
+ * @return array new mapping image array
+ */
+
+if (! function_exists('mcd_get_media_image')) {
+    function mcd_get_media_image($imageID, $size = [282,  170], $resolution = "medium", $icon = false){
+        $mapping = [];
+        $image = wp_get_attachment_image_src( $imageID, $resolution, $icon );
+        
+        if ($image) {
+            $mapping['icon'] = $icon;
+            $mapping['src'] = $image[0] ;
+            $mapping['width'] = $size[1] ;
+            $mapping['height'] = $size[2] ;
+            $mapping['srcset'] = wp_get_attachment_image_srcset( $imageID, $size) ;
+            $mapping['meta_data'] = [
+                'title' => !empty(get_the_title($imageID)) ? get_the_title($imageID) : get_bloginfo( 'name' ),
+                'alt' => !empty(get_post_meta( $imageID, '_wp_attachment_image_alt', true )) ? get_post_meta( $imageID, '_wp_attachment_image_alt', true ) : get_bloginfo( 'description' ),
+                'captions' => !empty(wp_get_attachment_caption($imageID)) ? wp_get_attachment_caption($imageID) : get_bloginfo( 'description' ),
+                'description' => !empty(get_the_content( null, null, $imageID )) ? get_the_content( null, null, $imageID ) : get_bloginfo( 'description' ),
+            ];
+            return $mapping;
+        }
+        return false;
+    }
+}
+
+/**
+ * Get attachment media html image
+ * @param int $imageID is media image ID
+ * @param array $size is variable for image sizes attributes
+ * @param string $resolution is media image size
+ * @param boolean $icon is variable for identifier image icon type
+ * @param string $classes is variable for custom classes
+ * @param string $priority is variable fetch priority default low
+ * @return string html image
+ */
+if (! function_exists('mcd_html_image')) {
+    function mcd_html_image($imageID, $size = [282,  170], $resolution = "medium", $icon = false, $classes = '', $priority = 'low'){
+        $image = mcd_get_media_image( $imageID, $resolution, $icon );
+        $htmlImage = '';
+
+        if ($image) {
+            $htmlImage = '<img loading="lazy"';
+            $htmlImage .= 'class="' . $classes . ' ';
+            $htmlImage .=  !empty($icon) ? 'svg-img' : '' ;
+            $htmlImage .= '" ';
+            $htmlImage .= 'src="' . $image["src"] . '" ';
+            $htmlImage .= 'width="' . $size[0] . '" ';
+            $htmlImage .= 'height="' . $size[1] . '" ';
+            $htmlImage .= 'title="' . $image["meta_data"]["title"] . '" ';
+            $htmlImage .= 'alt="' . $image["meta_data"]["alt"] . '" ';
+            $htmlImage .= 'decoding="async" ';
+            $htmlImage .= 'fetchpriority="' . $priority . '"';
+            $htmlImage .= '>';
+
+            return apply_filters( 'mcd_filter_html_image', $htmlImage, $image );
+            }
+
+        return false;
+    }
+}
+
+
+
+/**
+     * Generate atribute seo
+     * default create title and alt using post title
+     * @param array $args attribute name dan value
+     * @return string attribute
+     */
+if (!function_exists('mcd_seo_attribute')) {
+    function mcd_seo_attribute($args = []) {
+        $default_args = [
+            'title' => get_bloginfo( 'name' ),
+            'alt' => get_bloginfo( 'name' ),
+        ];
+
+        $args = wp_parse_args($args, $default_args);
+
+        $seo = '';
+        foreach ($args as $key => $value) {
+           $seo .= $key . '="' . $value . '" ';
+        }
+        
+        return $seo;
+    }
+}

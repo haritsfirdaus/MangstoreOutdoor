@@ -1,0 +1,44 @@
+/**
+ *
+ * Text classes
+ *
+ */
+
+h1, .heading-1 {
+    @apply font-darkerGrotesque text-[64px] leading-[120%] tracking-normal text-[#020B1F];
+}
+h2, .heading-2 {
+    @apply font-darkerGrotesque text-[56px] leading-[120%] tracking-normal text-[#020B1F];
+}
+h3, .heading-3 {
+    @apply font-darkerGrotesque text-[48px] leading-[140%] tracking-normal text-[#020B1F];
+}
+h4, .heading-4 {
+    @apply font-darkerGrotesque text-[32px] leading-[140%] tracking-normal text-[#020B1F];
+}
+h5, .heading-5 {
+    @apply font-darkerGrotesque text-[24px] leading-[140%] tracking-normal text-[#020B1F];
+}
+h6, .heading-6 {
+    @apply font-darkerGrotesque text-[20px] leading-[140%] tracking-normal text-[#020B1F];
+}
+
+p{
+    @apply text-[#454B57];
+}
+
+p, .body-1 {
+    @apply font-default text-[16px] leading-[190%] tracking-[0.32px] font-normal;
+}
+
+.body-2 {
+    @apply font-default text-[14px] leading-[190%] tracking-[0.14px] font-normal;
+}
+
+.body-3 {
+    @apply font-default text-[13px] leading-[190%] font-normal;
+}
+
+.body-4 {
+    @apply font-default text-[12px] leading-[190%] tracking-[0.24px] font-normal;
+}

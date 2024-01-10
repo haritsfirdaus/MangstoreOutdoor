@@ -1,0 +1,67 @@
+@import "text";
+@import "header";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html,
+    body {
+        @apply font-body bg-white;
+    }
+}
+
+img.alignright {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+img.alignleft {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+a img.alignright {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+a img.alignleft {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption-text {
+    @apply text-sm mt-1 font-light;
+}
+
+*[id*="attachment"],
+img,
+iframe {
+    max-width: 100%;
+}
+
+
+// Button
+.btn {
+    @apply flex px-8 py-4 items-center gap-[10px] rounded-[32px] transition-all duration-300 hover:cursor-pointer;
+}
+
+.btn.btn_black {
+    @apply bg-[#001F22] text-white;
+}
+
+// input
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+    background: transparent;
+    background-clip: text;
+}
