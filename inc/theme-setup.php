@@ -98,7 +98,7 @@
 add_action( 'after_setup_theme', 'themesdev_setup' );
 
 add_filter('excerpt_length', function($length){
-    $length = 15;
+    $length = 30;
     return $length;
 });
 add_filter( 'excerpt_more', function ($more){

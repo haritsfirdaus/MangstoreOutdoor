@@ -1,4 +1,4 @@
-<form action="/" method="get" onsubmit="preventDefault();" class="mt-[148px] mb-[64] h-[150px] w-full flex items-center justify-center search-wrapper">
+<form action="/" method="get" onsubmit="preventDefault();" class="mt-[148px] mb-[64px] w-full flex items-center justify-center search-wrapper">
     <div class="w-10/12 lg:w-6/12 h-[60px] flex items-center justify-between pl-8 pr-[14px] rounded-[53px] border border-[#001F22] search-input">
         <div class="flex w-full gap-6 search-group">
             <?php if (!wp_is_mobile()) : ?>
@@ -11,7 +11,7 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="absolute left-0 z-10 mt-4 min-w-[224px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none categories-wrapper">
+                    <div class="absolute left-0 z-10 mt-4 min-w-[224px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none categories-wrapper" style="display: none!important; z-index: -1!important;">
                         <div class="py-1 categories-list">
                             <?php foreach (mcd_get_terms() as $key => $value) : ?>
                                 <button type="button" class="block px-4 py-2 text-[14px] font-darkerGrotesque text-[#001F22] category-item" id="<?php echo 'category-item-' . $value->term_id; ?>" data-slug="<?php echo $value->slug; ?>"><?php echo $value->name; ?></button>

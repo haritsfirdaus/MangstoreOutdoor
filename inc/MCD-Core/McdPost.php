@@ -55,7 +55,7 @@ class McdPost {
      * @return string post title 
      */
     public function get_title() {
-        return get_the_title( $this->post_id );
+        return esc_html__( get_the_title( $this->post_id ), _THEMEDOMAIN );
     }
 
     /**
@@ -110,12 +110,12 @@ class McdPost {
         $time_difference = $current_time - $post_date;
 
         if ($time_difference < 86400) { // < 24 jam
-            return human_time_diff($post_date, $current_time) . ' ago';
+            return esc_html__(human_time_diff($post_date, $current_time) . ' ago', _THEMEDOMAIN);
         } else {
             if ($date_status === 'modified') {
-                return get_the_modified_date( $format, $this->post_id );
+                return esc_html__(get_the_modified_date( $format, $this->post_id ), _THEMEDOMAIN);
             }
-            return get_the_date($date_format, $this->post_id);
+            return esc_html__(get_the_date($date_format, $this->post_id), _THEMEDOMAIN);
         }
     }
 
@@ -130,63 +130,73 @@ class McdPost {
     /**
      * get the post terms
      * @param string $taxonomy the taxonomy slug
-     * @param array $args the terms arguments
-     * @return array terms using mcd_filter_get_terms filters
+     * @return array terms using mcd_filter_term filters
      */
-    public function get_post_terms($taxonomy = 'category', $args = array(
-        'orderby' => 'count',
-        'order' => 'DESC',
-        'hide_empty' => false,
-        'number' => 0, 
-        'search' => '',
-        'name__like' => '',
-        'meta_query' => '',
-        'meta_key' => array(),
-        'meta_value'=> '',
-    )) {
-        $default_args = [
-            'orderby' => 'count',
-            'order' => 'DESC',
-            'hide_empty' => false,
-            'number' => 0, 
-            'search' => '',
-            'name__like' => '',
-            'meta_query' => '',
-            'meta_key' => array(),
-            'meta_value'=> ''
-        ];
-        $args['taxonomy'] = $taxonomy;
-
-        $args = wp_parse_args($args, $default_args);
-        return mcd_mapping_terms($args);
-    }
-
-    public function get_permalink() {
-        return get_permalink($this->post_id);
+    public function get_post_terms($taxonomy = 'category', $limit = -1 ) {
+        $terms = get_the_terms($this->post_id, $taxonomy);
+        if ($terms && is_array($terms)) {
+            if ($limit !== -1) {
+                $terms = array_slice($terms, 0, $limit);
+            }
+            return $terms;
+        } 
+        return ;
     }
 
     /**
-     * Generate atribute seo
-     * default create title and alt using post title
-     * @param array $args attribute name dan value
-     * @return string attribute
+     * get the post primary terms
+     * @param string $taxonomy the taxonomy slug
+     * @return array terms using mcd_filter_terms filters
      */
-    public function permalink_seo($args = []) {
-        $default_args = [
-            'title' => get_the_title( $this->post_id ),
-            'alt' => get_the_title( $this->post_id ),
-        ];
+    public function get_primary_post_term($taxonomy = 'category') {
+        $terms = $this->get_post_terms($taxonomy);
 
-        $args = wp_parse_args($args, $default_args);
-
-        $seo = '';
-        foreach ($args as $key => $value) {
-           $seo .= $key . '="' . $value . '" ';
+        if (empty($terms)) {
+            return null;
         }
-        
-        return $seo;
+
+        $primary_term_id = get_post_meta($this->post_id, '_'.$taxonomy.'_id', true);
+
+        if (!empty($primary_term_id)) {
+            foreach ($terms as $term) {
+                if ($term->term_id == $primary_term_id) {
+                    return $term;
+                }
+            }
+        }
+
+        return $terms[0];
     }
 
+    /**
+     * get the post single thumbnail ID
+     * @return int post thumbnail ID
+     */
+    public function get_thumbnail_ID(){
+        if (has_post_thumbnail( $this->post_id )) {
+            return get_post_thumbnail_id( $this->post_id );
+        }
+
+        return false;
+    }
+
+    /**
+     * get the post single thumbnail Url
+     * @param string $resolution ex: thumbnail, medium, large, full
+     * default large
+     * @return url post thumbnail Url
+     */
+    public function get_thumbnail_url($resolution = 'large'){
+        if (has_post_thumbnail( $this->post_id )) {
+            return get_the_post_thumbnail_url( $this->post_id, $resolution );
+        }
+        return false;
+    }
+
+    /**
+     * get the post single thumbnail image
+     * @return string HTML post thumbnail
+     */
     public function get_single_image(){
         if (has_post_thumbnail( $this->post_id )) {
             $post_thumbnail_id = get_post_thumbnail_id( $this->post_id );
@@ -212,7 +222,7 @@ class McdPost {
             
         }
 
-        return 'oiuoiuouoiu';
+        return false;
     }
 
 }

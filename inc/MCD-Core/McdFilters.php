@@ -7,17 +7,17 @@
  * @param array $imageSize is array widht and hight image size
  * @return array new mapping array
  */
-if (! function_exists('mcd_mapping_post_card')) {
-    function mcd_mapping_post_card($post){
-        $post = get_post($post->ID);
+if (! function_exists('mcd_post')) {
+    function mcd_post($post){
+        $post = new McdPost($post->ID);
         if ($post) {
             $mapping = [
-                'ID' => $post->ID,
-                'title' => get_the_title( $post->ID ),
-                'publish_date' => get_the_date( null, $post->ID ),
-                'excerpt' => get_the_excerpt( $post->ID ),
+                'ID' => $post->ID(),
+                'title' => $post->get_title(),
+                'publish_date' => $post->get_date(),
+                'excerpt' => $post->get_excerpt(McdPost::ExcerptFormat_Excerpt, null, false),
             ];
-            return apply_filters( 'mcd_filter_post_card', $mapping, $post );
+            return apply_filters( 'mcd_filter_post', $mapping, $post );
         }
         return false;
     }
@@ -71,9 +71,9 @@ if (! function_exists('mcd_get_terms')) {
             'meta_value'=> '',
         );
 
-        $args = wp_parse_args($args, $term_args);
+        $termArgs = wp_parse_args($args, $term_args);
 
-        $terms = get_terms( $term_args );
+        $terms = get_terms( $termArgs );
         if ($terms) {
             $mapping = [];
             foreach ($terms as $key => $term) {

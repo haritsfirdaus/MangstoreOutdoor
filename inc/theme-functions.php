@@ -126,12 +126,15 @@ if (! function_exists('mcd_insertArrayAtPosition')) {
  * @param array $imageSize is array widht and hight image size
  * @return array new mapping array
  */
-if (! function_exists('mcd_mapping_posts_card')) {
-    function mcd_mapping_posts_card($posts){
+if (! function_exists('mcd_mapping_posts')) {
+    function mcd_mapping_posts($posts, $limit = -1){
         if ($posts) {
             $mapping_posts = [];
+            if ($limit !== -1) {
+                $posts = array_slice($posts, 0, $limit);
+            }
             foreach ($posts as $key => $value) {
-                array_push($mapping_posts, mcd_mapping_post_card($value));
+                array_push($mapping_posts, mcd_post($value));
             }
 
             return $mapping_posts;
@@ -150,7 +153,7 @@ if (! function_exists('mcd_mapping_posts_card')) {
  */
 
 if (! function_exists('mcd_get_media_image')) {
-    function mcd_get_media_image($imageID, $size = [282,  170], $resolution = "medium", $icon = false){
+    function mcd_get_media_image($imageID, $size = [384,  245], $resolution = "medium", $icon = false){
         $mapping = [];
         $image = wp_get_attachment_image_src( $imageID, $resolution, $icon );
         
@@ -183,7 +186,7 @@ if (! function_exists('mcd_get_media_image')) {
  * @return string html image
  */
 if (! function_exists('mcd_html_image')) {
-    function mcd_html_image($imageID, $size = [282,  170], $resolution = "large", $icon = false, $classes = '', $priority = 'low'){
+    function mcd_html_image($imageID, $size = [384,  245], $resolution = "large", $icon = false, $classes = '', $priority = 'low'){
         $image = mcd_get_media_image( $imageID, $size, $resolution, $icon );
         $htmlImage = '';
 
