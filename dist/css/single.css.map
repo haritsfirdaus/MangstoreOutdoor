@@ -1,0 +1,1 @@
+{"version":3,"file":"dist/css/single.css","mappings":"AACI,yK","sources":["webpack://Mangcoding Themes/./resources/sass/single/single.scss"],"sourcesContent":[".single-content p {\r\n    @apply font-default text-[14px] leading-[190%] tracking-[0.28px] font-normal text-[#001F22];\r\n}"],"names":[],"sourceRoot":""}

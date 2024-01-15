@@ -24,9 +24,12 @@ add_filter('mcd_filter_post', function ($mapping, $post) {
 $latestPosts = mcd_mapping_posts($wp_query->posts, 4);
 remove_all_filters('mcd_filter_post', 10);
 
-$latestPostExlude = array_map(function ($post) {
-    return $post['ID'];
-}, $latestPosts);
+$latestPostExlude = [];
+if (!empty($latestPosts)) {
+    $latestPostExlude = array_map(function ($post) {
+        return $post['ID'];
+    }, $latestPosts);
+}
 
 $postCategories = mcd_get_terms([
     'number' => 3
