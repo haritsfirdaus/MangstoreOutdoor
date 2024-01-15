@@ -210,29 +210,3 @@ if (! function_exists('mcd_html_image')) {
         return false;
     }
 }
-
-
-
-/**
-     * Generate atribute seo
-     * default create title and alt using post title
-     * @param array $args attribute name dan value
-     * @return string attribute
-     */
-if (!function_exists('mcd_seo_attribute')) {
-    function mcd_seo_attribute($args = []) {
-        $default_args = [
-            'title' => get_bloginfo( 'name' ),
-            'alt' => get_bloginfo( 'name' ),
-        ];
-
-        $args = wp_parse_args($args, $default_args);
-
-        $seo = '';
-        foreach ($args as $key => $value) {
-           $seo .= $key . '="' . $value . '" ';
-        }
-        
-        return $seo;
-    }
-}
