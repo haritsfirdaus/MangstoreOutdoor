@@ -210,3 +210,16 @@ if (! function_exists('mcd_html_image')) {
         return false;
     }
 }
+
+
+if (!function_exists('mcd_get_card_template')) {
+    function mcd_get_card_template($template){
+        $template_part = locate_template('template-parts/cards/card-' . get_post_type() . '.php');
+        $cardTemplate = 'template-parts/cards/card-default';
+        if ($template_part) {
+            $cardTemplate = 'template-parts/cards/card-'. $template;
+        }
+
+        return apply_filters('filter_mcd_get_card_template', $cardTemplate);
+    }
+}

@@ -18,6 +18,7 @@ add_filter('mcd_filter_post', function ($mapping, $post) {
     $mapping['category'] = $post->get_primary_post_term('category');
     $mapping['singleImage'] = $post->get_single_image();
     $mapping['link'] = get_permalink($post->ID());
+    $mapping['post_type'] = $post->get_post_type();
     return $mapping;
 }, 10, 2);
 
@@ -77,37 +78,11 @@ $postCategories = mcd_get_terms([
             <!-- 3 card post section -->
             <?php if ($latestPosts > 0) : ?>
                 <div class="flex gap-6 card-wrapper">
-                    <?php for ($i = 1; $i < count($latestPosts); $i++) : ?>
-                        <?php $post = new McdPost($latestPosts[$i]['ID']); ?>
-                        <a href="<?php echo esc_url(get_permalink($post->ID())); ?>" title="<?php echo $post->get_title(); ?>" target="_self" class="w-1/3 flex flex-col gap-4 post-item">
-                            <?php
-                            if (has_post_thumbnail($post->ID())) :
-                                echo mcd_html_image($post->get_thumbnail_ID(), [384, 245], 'medium');
-                            endif;
-                            ?>
-                            <div class="flex flex-col gap-4 post">
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex gap-2 items-center">
-                                        <p class="font-poppins text-[14px] font-normal leading-[26.6px] tracking-[0.28px] text-[#001F22]">
-                                            <?php echo $post->get_primary_post_term('category')->name; ?>
-                                        </p>
-                                        <span class="w-[5px] h-[5px] rounded-full bg-[#0EC5D7]"></span>
-                                        <p class="font-poppins text-[14px] font-normal leading-[26.6px] tracking-[0.28px]">
-                                            <?php echo $post->get_date(); ?>
-                                        </p>
-                                    </div>
-                                    <h2 class="font-bold heading-5 text-[#202020]"> <?php echo $post->get_title(); ?></h2>
-                                    <p class="body-2 overflow-hidden line-clamp-3 text-[#202020CC]" style="text-overflow: ellipsis;">
-                                        <?php echo $post->get_excerpt(McdPost::ExcerptFormat_Excerpt, null, false); ?>
-                                    </p>
-                                </div>
-                                <p class="font-poppins text-[14px] leading-[26.6px] tracking-[0.28px] text-[#202020CC]">
-                                    <?php echo get_the_date('j F Y', $post->ID()); ?>
-                                </p>
-                            </div>
-                        </a>
-                        <?php unset($post); ?>
-                    <?php endfor; ?>
+                    <?php 
+                        for ($i = 1; $i < count($latestPosts); $i++) : 
+                            do_action( 'mcd-loop-cards', $latestPosts[$i] );
+                        endfor; 
+                    ?>
                 </div>
 
             <?php endif; ?>
@@ -131,15 +106,21 @@ $postCategories = mcd_get_terms([
                         </a>
                     </div>
                     <?php
+                        add_filter('mcd_filter_post', function ($mapping, $post) {
+                            $mapping['post_type'] = $post->get_post_type();
+                            return $mapping;
+                        }, 10, 2);
                         McdQuery::set('post_type', 'post');
                         McdQuery::set('posts_per_page', 3);
                         McdQuery::set('paged', 1);
                         McdQuery::set('post__not_in', $latestPostExlude); 
                         McdQuery::set('cat', $category->term_id); 
-                        $query = McdQuery::get_query();
-                        $categoryPosts = McdQuery::get_posts();
+                        McdQuery::get_query();
+                        // $categoryPosts = McdQuery::get_posts();
+                        $categoryPosts = mcd_mapping_posts($wp_query->posts, 4);
+                        remove_all_filters('mcd_filter_post', 10);
                         $exclude = array_map(function($post){
-                                return $post->ID;
+                                return $post['ID'];
                         }, $categoryPosts);
                         foreach ($exclude as $key => $value) {
                             array_push($latestPostExlude, $value);
@@ -148,39 +129,11 @@ $postCategories = mcd_get_terms([
                     ?>
                     <!-- 3 card post section -->
                     <div class="flex gap-6 card-wrapper">
-                    <?php foreach ($categoryPosts as $key => $item) : ?>
-                        <?php $post = new McdPost( $item->ID ); ?>
-                        <a href="<?php echo esc_url(get_permalink( $post->ID())); ?>" 
-                            title="<?php echo $post->get_title(); ?>" 
-                            target="_self" class="w-1/3 flex flex-col gap-4 post-item">
-                            <?php
-                            if (has_post_thumbnail($post->ID())) :
-                                echo mcd_html_image($post->get_thumbnail_ID(), [384, 245], 'medium');
-                            endif;
-                            ?>
-                            <div class="flex flex-col gap-4 post">
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex gap-2 items-center">
-                                        <p class="font-poppins text-[14px] font-normal leading-[26.6px] tracking-[0.28px] text-[#001F22]">
-                                            <?php echo $post->get_primary_post_term('category')->name; ?>
-                                        </p>
-                                        <span class="w-[5px] h-[5px] rounded-full bg-[#0EC5D7]"></span>
-                                        <p class="font-poppins text-[14px] font-normal leading-[26.6px] tracking-[0.28px]">
-                                            <?php echo $post->get_date(); ?>
-                                        </p>
-                                    </div>
-                                    <h2 class="font-bold heading-5 text-[#202020]"> <?php echo $post->get_title(); ?></h2>
-                                    <p class="body-2 overflow-hidden line-clamp-3 text-[#202020CC]" style="text-overflow: ellipsis;">
-                                        <?php echo $post->get_excerpt(McdPost::ExcerptFormat_Excerpt, null, false); ?>
-                                    </p>
-                                </div>
-                                <p class="font-poppins text-[14px] leading-[26.6px] tracking-[0.28px] text-[#202020CC]">
-                                    <?php echo get_the_date('j F Y', $post->ID()); ?>
-                                </p>
-                            </div>
-                        </a>
-                        <?php unset($post); ?>
-                    <?php endforeach; ?>
+                    <?php 
+                        foreach ($categoryPosts as $key => $item) : 
+                            do_action( 'mcd-loop-cards', $item );
+                        endforeach; 
+                    ?>
                     </div>
                     <!-- 3 card post section end-->
                 </div>
