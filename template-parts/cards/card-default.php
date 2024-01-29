@@ -3,7 +3,7 @@ $post = new McdPost($args['postID']);
 ?>
 
 
-<a href="<?php echo esc_url(get_permalink($post->ID())); ?>" title="<?php echo $post->get_title(); ?>" target="_self" class="w-1/3 flex flex-col gap-4 post-item">
+<a href="<?php echo esc_url(get_permalink($post->ID())); ?>" title="<?php echo $post->get_title(); ?>" target="_self" class="w-full flex flex-col gap-4 post-item">
     <?php
     if (has_post_thumbnail($post->ID())) :
         echo mcd_html_image($post->get_thumbnail_ID(), [384, 245], 'medium');

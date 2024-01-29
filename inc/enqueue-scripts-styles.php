@@ -22,14 +22,19 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('app');
     // wp_enqueue_script( 'app' );
 
+    if (is_home(  )) {
+        if (wp_is_mobile(  )) {
+            wp_enqueue_style('swiper-css');
+            wp_enqueue_script( 'swiper-js' );
+        }
+    }
+
     if (is_single(get_the_ID())) {
         if ('post' == get_post_type(get_the_ID())) {
             wp_enqueue_style('Single');
         }
     }
-
-
-
+    
     //remove block library
     if (!is_admin()) {
         // Disable Gutenberg editor.

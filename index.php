@@ -46,10 +46,9 @@ $postCategories = mcd_get_terms([
 
         <!-- 3 card post section -->
         <?php
-        if (!wp_is_mobile()) :
-            if ($latestPosts > 0) :
+        if ($latestPosts > 0) :
             ?>
-                <div class="flex gap-6 card-wrapper">
+                <div class="card-wrapper grid grid-cols-3 gap-6">
                     <?php
                     for ($i = 1; $i < count($latestPosts); $i++) :
                         do_action('mcd-loop-cards', $latestPosts[$i]);
@@ -57,15 +56,42 @@ $postCategories = mcd_get_terms([
                     ?>
                 </div>
             <?php
-            endif;
         endif;
         ?>
         <!-- 3 card post section end -->
     </div>
     <!-- Sections Latest Posts END -->
 
+    <?php if (wp_is_mobile(  )) : ?>
+        <!-- Slider main container -->
+        <div class="w-[600px] h-[300px] swiper">
+        <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">Slide 1</div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div>
+            </div>
+        </div>
+    <?php endif; ?>
+
 </article>
 
 <?php
+
+add_action( 'wp_footer', function(){
+    ?>
+        <script id="card-wrapper-slider-js">
+            document.addEventListener('DOMContentLoaded',function(e){
+                let cardSlider = document.querySelector('.swiper');
+                const swiper = new Swiper(cardSlider, {
+                // Optional parameters
+                loop: false,
+                slidesPerView: 2,
+                });
+            });
+        </script>
+    <?php
+},100 );
 
 get_footer();

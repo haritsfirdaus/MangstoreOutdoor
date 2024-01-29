@@ -30,6 +30,13 @@ wp_register_script( 'app', get_stylesheet_directory_uri() . '/dist/js/app.js', a
 
 
 /**
+ * Register CDN Swiper
+ */
+wp_register_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), null );
+wp_register_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true );
+
+
+/**
  * Register themes localizescript
  */
 wp_localize_script('app', 'settings', [

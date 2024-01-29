@@ -736,6 +736,12 @@ html,
 .mt-4 {
   margin-top: 1rem;
 }
+.mt-\[104px\] {
+  margin-top: 104px;
+}
+.mb-\[24px\] {
+  margin-bottom: 24px;
+}
 .block {
   display: block;
 }
@@ -754,6 +760,9 @@ html,
 .table {
   display: table;
 }
+.grid {
+  display: grid;
+}
 .contents {
   display: contents;
 }
@@ -771,6 +780,9 @@ html,
 }
 .h-\[60px\] {
   height: 60px;
+}
+.h-\[300px\] {
+  height: 300px;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -796,11 +808,21 @@ html,
 .w-10\/12 {
   width: 83.333333%;
 }
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.w-\[600px\] {
+  width: 600px;
+}
 .min-w-\[224px\] {
   min-width: 224px;
 }
 .max-w-\[792px\] {
   max-width: 792px;
+}
+.max-w-\[164px\] {
+  max-width: 164px;
 }
 .shrink-0 {
   flex-shrink: 0;
@@ -829,6 +851,9 @@ html,
 }
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .flex-col {
   flex-direction: column;
@@ -1173,6 +1198,12 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   }
 }
 @media (min-width: 1024px) {
+  .lg\:mt-\[148px\] {
+    margin-top: 148px;
+  }
+  .lg\:mb-\[64px\] {
+    margin-bottom: 64px;
+  }
   .lg\:w-6\/12 {
     width: 50%;
   }

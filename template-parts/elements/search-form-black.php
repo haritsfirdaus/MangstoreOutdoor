@@ -1,4 +1,4 @@
-<form action="/" method="get" onsubmit="preventDefault();" class="mt-[148px] mb-[64px] w-full flex items-center justify-center search-wrapper">
+<form action="/" method="get" onsubmit="preventDefault();" class="mt-[104px] mb-[24px] lg:mt-[148px] lg:mb-[64px] w-full flex items-center justify-center search-wrapper">
     <div class="w-10/12 lg:w-6/12 h-[60px] flex items-center justify-between pl-8 pr-[14px] rounded-[53px] border border-[#001F22] search-input">
         <div class="flex w-full gap-6 search-group">
             <?php if (!wp_is_mobile()) : ?>
