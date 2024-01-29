@@ -5,7 +5,8 @@ module.exports = {
         [
             "*.php",
             "./*.php",
-            "./**/*.php"
+            "./**/*.php",
+            "./template-parts/**/*.php"
         ],
         { dot: true }
     ),
@@ -22,13 +23,14 @@ module.exports = {
         container: {
             center: true,
             padding: {
-            //     DEFAULT: "1.75rem",
-            //     md: "2.5rem",
+                DEFAULT: "24px",
+                md: "30px",
             //     lg: "3.25rem",
                 xl: "120px",
             },
         },
         screens: {
+            'md': '768px',
             'lg': '1024px',
             'xl': '1440px',
             // '2xl': '1440px'

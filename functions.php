@@ -26,4 +26,3 @@ require get_template_directory() . '/inc/theme-enqueues.php';
 require get_template_directory() . '/inc/enqueue-scripts-styles.php';
 require get_template_directory() . '/inc/theme-functions.php';
 require get_template_directory() . '/inc/theme-setup.php';
-
