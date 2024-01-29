@@ -48,12 +48,22 @@ $postCategories = mcd_get_terms([
         <?php
         if ($latestPosts > 0) :
             ?>
-                <div class="card-wrapper grid grid-cols-3 gap-6">
-                    <?php
-                    for ($i = 1; $i < count($latestPosts); $i++) :
-                        do_action('mcd-loop-cards', $latestPosts[$i]);
-                    endfor;
-                    ?>
+                <div class="<?php echo wp_is_mobile(  ) ? 'swiper w-screen' : 'grid grid-cols-3 gap-6' ?> card-wrapper">
+                    <!-- Card Type Slider -->
+                    <?php if (wp_is_mobile(  )) : ?>
+                        <div class="swiper-wrapper">
+                            <?php for ($i = 1; $i < count($latestPosts); $i++) : ?>
+                            <div class="swiper-slide">
+                                <?php do_action('mcd-loop-cards', $latestPosts[$i]); ?>
+                            </div>
+                            <?php endfor; ?>
+                        </div>
+                    <?php else: ?>
+                        <?php for ($i = 1; $i < count($latestPosts); $i++) : ?>
+                            <?php do_action('mcd-loop-cards', $latestPosts[$i]); ?>
+                        <?php endfor; ?>
+                    <?php endif; ?>
+                    <!-- End Card Type Slider -->
                 </div>
             <?php
         endif;
@@ -61,19 +71,6 @@ $postCategories = mcd_get_terms([
         <!-- 3 card post section end -->
     </div>
     <!-- Sections Latest Posts END -->
-
-    <?php if (wp_is_mobile(  )) : ?>
-        <!-- Slider main container -->
-        <div class="w-[600px] h-[300px] swiper">
-        <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-            </div>
-        </div>
-    <?php endif; ?>
 
 </article>
 
@@ -87,7 +84,8 @@ add_action( 'wp_footer', function(){
                 const swiper = new Swiper(cardSlider, {
                 // Optional parameters
                 loop: false,
-                slidesPerView: 2,
+                slidesPerView: 2.5,
+                spaceBetween: 24,
                 });
             });
         </script>
