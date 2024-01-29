@@ -40,9 +40,27 @@ $postCategories = mcd_get_terms([
 <article id="site-content" class="min-h-screen">
     <!-- Sections Latest Posts -->
     <div class="container w-full h-full flex flex-col gap-6 section-latest-posts">
-        <?php 
-            get_template_part( 'template-parts/post-elements/side-image-content', null, $latestPosts[0] )
+        <?php
+        get_template_part('template-parts/post-elements/side-image-content', null, $latestPosts[0])
         ?>
+
+        <!-- 3 card post section -->
+        <?php
+        if (!wp_is_mobile()) :
+            if ($latestPosts > 0) :
+            ?>
+                <div class="flex gap-6 card-wrapper">
+                    <?php
+                    for ($i = 1; $i < count($latestPosts); $i++) :
+                        do_action('mcd-loop-cards', $latestPosts[$i]);
+                    endfor;
+                    ?>
+                </div>
+            <?php
+            endif;
+        endif;
+        ?>
+        <!-- 3 card post section end -->
     </div>
     <!-- Sections Latest Posts END -->
 
