@@ -35,6 +35,11 @@ wp_register_script( 'app', get_stylesheet_directory_uri() . '/dist/js/app.js', a
 wp_register_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), null );
 wp_register_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true );
 
+/**
+ * Mcd Themes Scripts Register
+ */
+wp_register_script( 'page-default-js', get_stylesheet_directory_uri() . '/dist/js/page-default.js', array(), null, true );
+
 
 /**
  * Register themes localizescript

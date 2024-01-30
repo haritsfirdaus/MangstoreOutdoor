@@ -25,10 +25,10 @@ mix.options({
     ],
   });
 
-// const jsFiles = fastGlob.sync(['resources/js/*.js', 'resources/js/**/*.js']);
-// jsFiles.forEach(file => {
-//   mix.js(file, `dist/js`);
-// })
+const jsFiles = fastGlob.sync(['resources/js/*.js', 'resources/js/paged/*.js']);
+jsFiles.forEach(file => {
+  mix.js(file, `dist/js`);
+})
 
 mix.version();
 mix.sourceMaps().version();
