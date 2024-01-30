@@ -38,7 +38,7 @@ wp_register_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-
 /**
  * Mcd Themes Scripts Register
  */
-wp_register_script( 'page-default-js', get_stylesheet_directory_uri() . '/dist/js/page-default.js', array(), null, true );
+wp_register_script( 'page-default-js', get_stylesheet_directory_uri() . '/dist/js/page-default.js', array('app'), _RESOURCES_ASSETS, true );
 
 
 /**

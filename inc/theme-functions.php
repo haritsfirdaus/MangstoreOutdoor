@@ -200,8 +200,8 @@ if (! function_exists('mcd_html_image')) {
             $htmlImage .= 'height="' . $size[1] . '" ';
             $htmlImage .= 'title="' . $image["meta_data"]["title"] . '" ';
             $htmlImage .= 'alt="' . $image["meta_data"]["alt"] . '" ';
-            $htmlImage .= 'decoding="async" ';
-            $htmlImage .= 'fetchpriority="' . $priority . '"';
+            // $htmlImage .= 'decoding="async" ';
+            // $htmlImage .= 'fetchpriority="' . $priority . '"';
             $htmlImage .= '>';
 
             return apply_filters( 'mcd_filter_html_image', $htmlImage, $image );

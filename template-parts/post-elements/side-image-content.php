@@ -11,7 +11,7 @@
         if (wp_is_mobile(  )) {
             echo mcd_html_image($args['thumbnailID'], [690, 440], 'medium', false, 'h-full', 'high');
         }else{
-            echo mcd_html_image($args['thumbnailID'], [690, 440], 'large', false, 'h-full', 'high');
+            echo mcd_html_image($args['thumbnailID'], [690, 440], 'medium', false, 'h-full', 'high');
         }
         ?>
     </div>

@@ -27,7 +27,8 @@
 
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
-    <div class="preloader">
+    <div class="w-full h-screen flex items-center justify-center absolute top-0 -z-50 opacity-0 transition-opacity duration-300 preloader bg-primary blur-sm preloader__show">
+        <span class="heading-1">..PRELOADER..</span>
     </div>
     <main id="site" class="bg-white"><!-- MAIN START -->
         <?php do_action('before_header'); ?>
