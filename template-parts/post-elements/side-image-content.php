@@ -5,7 +5,7 @@
 <!-- Wrapper Open -->
 <div class="w-full h-full flex flex-col md:flex-row gap-6 justify-start side-image-content image-left">
     <!-- Left Content -->
-    <div class="w-full md:w-1/2 img-wrapper">
+    <div class="w-full md:w-1/2 overflow-hidden img-wrapper">
         <!-- generate image -->
         <?php
         if (wp_is_mobile(  )) {

@@ -1,6 +1,8 @@
 {
-    "/dist/js/app.js": "/dist/js/app.js?id=e94c655a22b3274e8e4194ee263255f4",
-    "/dist/js/page-default.js": "/dist/js/page-default.js?id=a3afe5e7bd163ffb956bd1456fa4daf5",
+    "/dist/js/animated.js": "/dist/js/animated.js?id=fd9a6bf881f2390a96093da512fa1ae7",
+    "/dist/js/app.js": "/dist/js/app.js?id=8aa0a45ab7cc252cc28469dd72d45821",
+    "/dist/js/navbar.js": "/dist/js/navbar.js?id=c642f26b72f4307a56481bde6258dd8c",
+    "/dist/js/page-default.js": "/dist/js/page-default.js?id=9897a0cae73bf750fd25f9aefd786cdd",
     "/dist/css/single.css": "/dist/css/single.css?id=f0931fa63c597d61b9f39ed6e6999b96",
-    "/dist/css/app.css": "/dist/css/app.css?id=c7b7e23114390db824f9b0f1a7ebf26d"
+    "/dist/css/app.css": "/dist/css/app.css?id=8c26b0e8fc00e4d7b3e8e7cc905c0234"
 }

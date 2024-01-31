@@ -26,7 +26,8 @@ wp_register_style( 'Single', get_stylesheet_directory_uri() . '/dist/css/single.
  */
 wp_register_script( 'manifest', get_stylesheet_directory_uri() . '/dist/js/manifest.js', array(), _RESOURCES_ASSETS, true );
 wp_register_script( 'vendor', get_stylesheet_directory_uri() . '/dist/js/vendor.js', array(), _RESOURCES_ASSETS, true );
-wp_register_script( 'app', get_stylesheet_directory_uri() . '/dist/js/app.js', array(), _RESOURCES_ASSETS, true );
+wp_register_script( 'navbar', get_stylesheet_directory_uri() . '/dist/js/navbar.js', array(), _RESOURCES_ASSETS, true );
+wp_register_script( 'app', get_stylesheet_directory_uri() . '/dist/js/app.js', array('navbar'), _RESOURCES_ASSETS, true );
 
 
 /**
@@ -38,7 +39,7 @@ wp_register_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-
 /**
  * Mcd Themes Scripts Register
  */
-wp_register_script( 'page-default-js', get_stylesheet_directory_uri() . '/dist/js/page-default.js', array('app'), _RESOURCES_ASSETS, true );
+wp_register_script( 'page-default-js', get_stylesheet_directory_uri() . '/dist/js/page-default.js', array('navbar','app'), _RESOURCES_ASSETS, true );
 
 
 /**

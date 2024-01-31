@@ -1,121 +1,116 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import McdAnimated from "../animated";
 gsap.registerPlugin(ScrollTrigger);
 
-const preloader = document.querySelector('.preloader');
-const searchForm = document.querySelector('.search-input');
-const navElement = document.querySelector('#masthead nav');
 const sideImageContent = document.querySelector('.side-image-content');
-const latestCardWrapper = document.querySelector('.card-wrapper');
-
-function animateBlurBottomToTop(timeline,selector, startAt = '<0.1', fromProps, toProps) {
-    timeline.fromTo(
-        selector,
-        {
-            ...fromProps,
-            opacity:  fromProps && fromProps.opacity ? fromProps.opacity :  .5,
-            y:  fromProps && fromProps.y ? fromProps.y :  10,
-            filter:  fromProps && fromProps.filter ? fromProps.filter :  'blur(5px)'
-        },
-        {
-            ...toProps,
-            opacity:  toProps && toProps.opacity ? toProps.opacity :  1,
-            y:  toProps && toProps.y ? toProps.y :  0,
-            filter:  toProps && toProps.filter ? toProps.filter :  'blur(0px)',
-        },
-        startAt
-    );
-}
-
-function animateRightToLeft(timeline,selector, startAt = '<0.1', fromProps, toProps) {
-    timeline.fromTo(
-        selector,
-        {
-            ...fromProps,
-            x:10,
-        },
-        {
-            ...toProps,
-            opacity:1,
-            x:0,
-        },
-        startAt
-    );
-}
-let navbarTimeline = gsap.timeline(
-    { defaults: 
-        { 
-            duration: 0.5
-        } 
-    });
-
-if (navElement) {
-    animateBlurBottomToTop(navbarTimeline,navElement);
-}
-
-if (searchForm) {
-    animateBlurBottomToTop(navbarTimeline,searchForm);
-}
+const latestCardWrapper = document.querySelector('.section-latest-posts .card-wrapper');
 
 let latestPostTimeline = gsap.timeline({
     defaults: {
         duration: 0.5,
         opacity: 0.1
     },
-    paused: true,
     smoothChildTiming: true
 });
 
-if (sideImageContent && sideImageContent.querySelector('.img-wrapper')) {
-    animateBlurBottomToTop(latestPostTimeline, 
-        sideImageContent.querySelector('.img-wrapper'), 
-        '0',
-        {
-            filter: 'blur(10px)'
-        },
-        {
-            duration: 1
-        });
+
+if (sideImageContent && sideImageContent.querySelector('.img-wrapper img')) {
+    McdAnimated.animateFromBlurScale(latestPostTimeline, 
+        sideImageContent.querySelector('.img-wrapper img'),'+0.2',{
+            duration: .6
+        })
 }
 
 if (sideImageContent && sideImageContent.querySelector('.post-content')) {
-    animateRightToLeft(latestPostTimeline, sideImageContent.querySelector('.post-content'),'<0.2');
+    McdAnimated.animateFromRightToLeft(latestPostTimeline, sideImageContent.querySelector('.post-content'),'+0.1');
 }
 
 if (latestCardWrapper) {
-    gsap.fromTo(".post-item", 
-    {
-        y: 50,
-    },
-    {
-        y: 0,
+    McdAnimated.animateFromBottomToTop(latestPostTimeline, '.section-latest-posts .card-wrapper .post-item','+0.1',{
+        stagger: 0.2,
+        duration: 1
+    })
+    McdAnimated.animateFromBottomToTop(latestPostTimeline, '.section-latest-posts .card-wrapper .post-item img','+0.1',{
         stagger: 0.2
-    });
+    })
 }
 
-navbarTimeline.pause();
 document.addEventListener('DOMContentLoaded', function(){
-    preloader.classList.remove('preloader__show');
-    navbarTimeline.play();
-    latestPostTimeline.play();
-
     var observer = new IntersectionObserver(function (entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Elemen masuk viewport, inisialisasi Swiper
-                new Swiper(entry.target, {
-                    loop: false,
-                    slidesPerView: 2.5,
-                    spaceBetween: 10,
-                });
+                if (entry.target.classList.contains('swiper')) {
+                    // Elemen masuk viewport, inisialisasi Swiper
+                    new Swiper(entry.target, {
+                        loop: false,
+                        slidesPerView: 2.5,
+                        spaceBetween: 10,
+                    });
+                }
+                
+                if (entry.target.classList.contains('category-loop')) {
+                    let el = entry.target;
+                    McdAnimated.animateFromBottomToTop(categoriesLoopTimeline,el.querySelector('svg'),null, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 60%",
+                        },
+                    });
+                    McdAnimated.animateFromBottomToTop(categoriesLoopTimeline,el.querySelector('h2'),null, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 60%",
+                        },
+                        filter: 'blur(5px)',
+                        opacity: 0
+                    });
+                    McdAnimated.animateFromRightToLeft(categoriesLoopTimeline,el.querySelector('.post-permalink'),null, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 60%",
+                        },
+                        filter: 'blur(5px)',
+                        opacity: 0
+                    });
+
+                    let cardGrid = el.querySelectorAll('a.post-item');
+                    if (cardGrid) {
+                        cardGrid.forEach(element => {
+                            McdAnimated.animateFromRightToLeft(categoriesLoopTimeline,element,null, {
+                                scrollTrigger: {
+                                    trigger: el,
+                                    start: "top 60%",
+                                },
+                                filter: 'blur(5px)',
+                                opacity: 0,
+                                duration: .5,
+                                delay: 0.2
+                            });
+                        });
+                    }
+                }
+                
                 observer.unobserve(entry.target);
             }
         });
     });
-    var swiperElements = document.querySelectorAll('.swiper');
-    swiperElements.forEach(function (element) {
-        observer.observe(element);
+    let categoriesLoopTimeline = gsap.timeline({
+        smoothChildTiming: true
     });
+    var swiperElements = document.querySelectorAll('.swiper');
+    if (swiperElements) {
+        swiperElements.forEach(function (element) {
+            observer.observe(element);
+        });
+    }
+
+    var cardElement = document.querySelectorAll('.category-loop');
+    if (cardElement) {
+        cardElement.forEach(function(el){
+            observer.observe(el);
+        })
+    }
     
     
 })

@@ -20,7 +20,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('inter');
 
     wp_enqueue_style('app');
-    // wp_enqueue_script( 'app' );
+    wp_enqueue_script( 'app' );
 
     if (is_home(  )) {
         wp_enqueue_script( 'page-default-js' );
