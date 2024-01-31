@@ -51,12 +51,22 @@ document.addEventListener('DOMContentLoaded', function(){
                 
                 if (entry.target.classList.contains('category-loop')) {
                     let el = entry.target;
-                    McdAnimated.animateFromBottomToTop(categoriesLoopTimeline,el.querySelector('svg'),null, {
-                        scrollTrigger: {
-                            trigger: el,
-                            start: "top 60%",
-                        },
-                    });
+                    if (el.querySelector('svg')) {
+                        McdAnimated.animateFromBottomToTop(categoriesLoopTimeline,el.querySelector('svg'),null, {
+                            scrollTrigger: {
+                                trigger: el,
+                                start: "top 60%",
+                            },
+                        });
+                    }
+                    if (categoriesLoopTimeline,el.querySelector('.svg-img')) {
+                        McdAnimated.animateFromBottomToTop(categoriesLoopTimeline,el.querySelector('.svg-img'),null, {
+                            scrollTrigger: {
+                                trigger: el,
+                                start: "top 60%",
+                            },
+                        });
+                    }
                     McdAnimated.animateFromBottomToTop(categoriesLoopTimeline,el.querySelector('h2'),null, {
                         scrollTrigger: {
                             trigger: el,

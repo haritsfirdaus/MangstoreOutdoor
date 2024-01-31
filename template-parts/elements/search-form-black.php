@@ -23,8 +23,7 @@
                     <path d="M1 0L1 28" stroke="#C2C2C2" />
                 </svg>
             <?php endif; ?>
-            <input type="search" name="s" id="keywords" placeholder="Search Topics" required class=" w-full text-[14px] font-darkerGrotesque text-[#001F22] p-0 border-transparent
-                            focus:border-transparent focus:ring-transparent">
+            <input type="search" name="s" id="keywords" placeholder="Search Topics" required class=" w-full text-[14px] font-darkerGrotesque text-[#001F22] p-0 border-transparent focus:border-transparent focus:ring-transparent">
         </div>
         <input type="hidden" name="cat" value="all">
         <button id="submit-search" type="submit" class="inline-flex p-[12px] gap-10 shrink-0" title="Search">

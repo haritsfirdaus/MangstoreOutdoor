@@ -186,12 +186,14 @@ if (! function_exists('mcd_get_media_image')) {
  * @return string html image
  */
 if (! function_exists('mcd_html_image')) {
-    function mcd_html_image($imageID, $size = [384,  245], $resolution = "large", $icon = false, $classes = '', $priority = 'low'){
+    function mcd_html_image($imageID, $size = [384,  245], $resolution = "medium", $icon = false, $classes = '', $priority = 'low'){
         $image = mcd_get_media_image( $imageID, $size, $resolution, $icon );
         $htmlImage = '';
 
         if ($image) {
-            $htmlImage = '<img loading="lazy"';
+            $htmlImage = '<img ';
+            $htmlImage .= 'decoding="async" ';
+            $htmlImage .= 'loading="lazy" ';
             $htmlImage .= 'class="' . $classes . ' ';
             $htmlImage .=  !empty($icon) ? 'svg-img' : '' ;
             $htmlImage .= '" ';
@@ -200,8 +202,7 @@ if (! function_exists('mcd_html_image')) {
             $htmlImage .= 'height="' . $size[1] . '" ';
             $htmlImage .= 'title="' . $image["meta_data"]["title"] . '" ';
             $htmlImage .= 'alt="' . $image["meta_data"]["alt"] . '" ';
-            // $htmlImage .= 'decoding="async" ';
-            // $htmlImage .= 'fetchpriority="' . $priority . '"';
+            $htmlImage .= 'fetchpriority="' . $priority . '"';
             $htmlImage .= '>';
 
             return apply_filters( 'mcd_filter_html_image', $htmlImage, $image );

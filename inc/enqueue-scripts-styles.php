@@ -27,7 +27,7 @@ add_action('wp_enqueue_scripts', function () {
         if (wp_is_mobile(  )) {
             wp_dequeue_style( 'Roboto' );
             wp_dequeue_style( 'Plus Jakarta Sans' );
-
+            wp_dequeue_style( 'Poppins' );
             wp_enqueue_style('swiper-css');
             wp_enqueue_script( 'swiper-js' );
 
