@@ -34,22 +34,26 @@
         <?php do_action('before_header'); ?>
 
         <header id="masthead" class="w-full absolute top-0 left-0 site-header"> <!-- HEADER START -->
-            <?php if (!wp_is_mobile()) : ?>
-                <nav class="flex py-4 items-center gap-20 container header-primary header-desktop justify-between">
-                    <?php mcd_custom_logo(); ?>
-                    <ul>
+            <nav class="flex lg:py-4 max-lg:pt-8 max-lg:pb-[25px] items-center gap-20 container header-primary header-desktop justify-between">
+                <?php mcd_custom_logo(); ?>
+                <ul>
 
-                    </ul>
-                    <div class="flex items-center gap-10 header-actions">
-                        <button title="Search">
-                            <img class="svg-img" src="<?php echo _RESOURCES_SVG . '/ico-search-black.svg' ?>" alt="Search">
-                        </button>
-                        <?php get_template_part('template-parts/elements/link-button', 'black', [
-                            'label' => 'Get In Touch',
-                            'link' => site_url()
-                        ]) ?>
-                    </div>
-                </nav>
-            <?php endif; ?>
+                </ul>
+                <button class="flex items-center justify-center w-[24px] h-[24px] lg:hidden mobile-menu">
+                    <img class="svg-img" src="<?php echo _RESOURCES_SVG . '/mobile-menu-gray.svg' ?>" alt="Mobile Menu" title="Mobile Menu">
+                </button>
+                <div class="flex items-center gap-10 header-actions max-lg:hidden">
+                    <button title="Search">
+                        <img class="svg-img" src="<?php echo _RESOURCES_SVG . '/ico-search-black.svg' ?>" alt="Search" title="Search">
+                    </button>
+                    <?php get_template_part('template-parts/elements/link-button', 'black', [
+                        'label' => 'Get In Touch',
+                        'link' => site_url()
+                    ]) ?>
+                </div>
+            </nav>
+                <div class="container w-full lg:hidden">
+                    <div class="max-lg:border-b max-lg:border-b-[#001F22] h-1"></div>
+                </div>
         </header> <!-- HEADER END -->
         <?php do_action('after_header'); ?>

@@ -14,6 +14,9 @@ if (!defined('_RESOURCES_ASSETS')) {
 if (!defined('_RESOURCES_SVG')) {
     define('_RESOURCES_SVG', get_stylesheet_directory_uri() . '/resources/svg');
 }
+if (!defined('_RESOURCES_IMAGES')) {
+    define('_RESOURCES_IMAGES', get_stylesheet_directory_uri() . '/resources/images');
+}
 if (!defined('_THEMEDOMAIN')) {
     define('_THEMEDOMAIN', 'mcd');
 }

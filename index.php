@@ -37,7 +37,7 @@ $postCategories = mcd_get_terms([
 ]);
 ?>
 
-<article id="site-content" class="min-h-screen overflow-x-hidden pb-[500px]">
+<article id="site-content" class="min-h-screen overflow-x-hidden">
     <!-- Sections Latest Posts -->
     <div class="container w-full h-full flex flex-col gap-6 section-latest-posts">
         <?php

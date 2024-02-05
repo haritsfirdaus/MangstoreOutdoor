@@ -15,12 +15,89 @@ global $post;
 
 </main> <!-- MAIN END -->
 
-<!-- <footer>
-    footer
-    <div class="footer-bottom pt-7 pb-6 justify-center items-center inline-flex w-full">
-        <span class="body-2">© </span>
+<footer class="container py-[100px] bg-[#001F22] footer">
+    <div class=" grid grid-cols-3 footer-wrapper">
+        <div class="flex flex-col justify-between items-start h-full footer-column-1">
+            <div class="flex flex-col gap-4 items-start justify-start max-w-[227px] company-info">
+                <p class="font-darkerGrotesque text-[24px] font-bold leading-[24px] text-[#DDDDDD]">
+                    PT Anugrah Kreasi Digital. karang tengah, Cibadak - Sukabumi
+                </p>
+                <p class="font-darkerGrotesque text-[24px] font-bold leading-[24px] text-[#DDDDDD]">
+                    <a href="mailto:hello@mangcoding.com">hello@mangcoding.com</a>
+                    0266-6532078
+                    WA:0857-5940-2332
+                </p>
+            </div>
+
+            <button title="<?php echo get_bloginfo('name') . 'White Logo'; ?>">
+                <img class="svg-img" src="<?php echo _RESOURCES_SVG . '/logo-white.svg' ?>" alt="<?php echo get_bloginfo('name') . 'White Logo'; ?>" title="<?php echo get_bloginfo('name') . 'White Logo'; ?>">
+            </button>
+        </div>
+        <div class="flex flex-col justify-between -ml-20 footer-column-2">
+            <p class="font-darkerGrotesque text-[16px] font-bold leading-normal text-white label mb-[41px]">
+                How can we help ?
+            </p>
+            <?php
+            $menus = [
+                [
+                    'label' => "Home",
+                    'path'  => get_home_url()
+                ],
+                [
+                    'label' => "About",
+                    'path'  => get_home_url()
+                ],
+                [
+                    'label' => "Services",
+                    'path'  => get_home_url()
+                ],
+                [
+                    'label' => "Blog",
+                    'path'  => get_home_url()
+                ],
+                [
+                    'label' => "Work",
+                    'path'  => get_home_url()
+                ]
+            ];
+            ?>
+            <ul class="flex flex-col gap-4 footer-menus">
+                <?php foreach ($menus as $key => $menu) : ?>
+                    <li class="footer-menu-item">
+                        <a href="<?php echo $menu['path']; ?>" class="font-darkerGrotesque text-[64px] leading-[24px] font-medium tracking-[65] text-[#DDDDDD]" alt="<?php echo $menu['label'] . " Page"; ?>" title="<?php echo $menu['label'] . " Page"; ?>" target="_self"><?php echo $menu['label']; ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="flex flex-col justify-between items-end footer-column-3">
+            <div class="trusted-partner">
+                <p class="font-darkerGrotesque text-[16px] font-bold leading-normal text-white label mb-5 ">
+                    Trusted partner
+                </p>
+                <?php 
+                    $partners = [
+                        ['label' => 'Orely', 'path'=> _RESOURCES_IMAGES . '/orely.png', 'url' => 'https://orely.co' ],
+                        ['label' => 'Kiwa', 'path'=> _RESOURCES_IMAGES . '/kiwa.png', 'url' => '#' ],
+                        ['label' => 'Sans Broters', 'path'=> _RESOURCES_IMAGES . '/sans-brothers.png', 'url' => '#' ],
+                    ];
+                ?>
+
+                <ul class="flex flex-wrap gap-4 max-w-[224px] partners">
+                    <?php foreach ($partners as $key => $partner) : ?>
+                        <li class="partner-item">
+                            <a href="<?php echo $partner['url'] ?>" 
+                                alt="<?php echo $partner['label'] . ' partner' ?>"
+                                title="<?php echo $partner['label'] . ' partner' ?>"
+                                <?php echo $partner['url'] !== '#' ? 'target="_blank" ' : 'target="_self" ' ?> >
+                                <img src="<?php echo $partner['path']; ?>" alt="<?php echo $partner['label'] . ' partner' ?>" title="<?php echo $partner['label'] . ' partner' ?>">
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     </div>
-</footer> -->
+</footer>
 
 
 

@@ -73,32 +73,32 @@ if ( !function_exists( 'mcd_custom_logo' ) ){
         if ( !empty( $default_logo ) ) : ?>
             <?php if (display_header_text()==true) : ?>
                 <a href="<?php echo esc_url( home_url() ); ?>" class="branding branding_logo branding_with_title"
-                    alt="<?php echo get_bloginfo( 'name' ); ?>"
-                    title="<?php echo get_bloginfo( 'name' ); ?>"
+                    alt="<?php echo get_bloginfo( 'name' ) . 'Logo'; ?>"
+                    title="<?php echo get_bloginfo( 'name' )  . 'Logo'; ?>"
                     >
                     <img class="svg-img branding-logo" src="<?php echo $default_logo; ?>" 
                         width="24.7px"
                         height="19.41px"
-                        alt="<?php echo get_bloginfo( 'name' ); ?>"
-                        title="<?php echo get_bloginfo( 'name' ); ?>">
+                        alt="<?php echo get_bloginfo( 'name' ) . 'Logo'; ?>"
+                        title="<?php echo get_bloginfo( 'name' )  . 'Logo'; ?>">
                     <h4 class="font-roboto text-[20px] leading-normal text-[#001F22] font-bold"><?php echo get_bloginfo('name') ?></h4>
                 </a>
             <?php else : ?>
                 <a href="<?php echo esc_url( home_url() ); ?>" class="branding branding_logo"
-                    alt="<?php echo get_bloginfo( 'name' ); ?>"
-                    title="<?php echo get_bloginfo( 'name' ); ?>">
+                    alt="<?php echo get_bloginfo( 'name' ) . 'Logo'; ?>"
+                    title="<?php echo get_bloginfo( 'name' )  . 'Logo'; ?>">
                     <img class="svg-img branding-logo" src="<?php echo $default_logo; ?>" 
                         width="24.7"
                         height="19.41px"
-                        alt="<?php echo get_bloginfo( 'name' ); ?>"
-                        title="<?php echo get_bloginfo( 'name' ); ?>">
+                        alt="<?php echo get_bloginfo( 'name' ) . 'Logo'; ?>"
+                        title="<?php echo get_bloginfo( 'name' )  . 'Logo'; ?>">
                 </a>
             <?php endif; ?>
             
         <?php else: ?>
             <a class="branding no_logo" href="<?php echo esc_url( home_url(  ) ); ?>"
-                alt="<?php echo get_bloginfo( 'name' ); ?>"
-                title="<?php echo get_bloginfo( 'name' ); ?>">
+                alt="<?php echo get_bloginfo( 'name' ) . 'Logo'; ?>"
+                title="<?php echo get_bloginfo( 'name' )  . 'Logo'; ?>">
                 <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
             </a>
     <?php  endif;

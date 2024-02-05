@@ -1,3 +1,9 @@
-.single-content p{--tw-text-opacity:1;color:rgb(0 31 34/var(--tw-text-opacity));font-family:Poppins;font-size:14px;font-weight:400;letter-spacing:.28px;line-height:190%}
-
-/*# sourceMappingURL=single.css.map*/
+.single-content p {
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 190%;
+    letter-spacing: 0.28px;
+    --tw-text-opacity: 1;
+    color: rgb(0 31 34 / var(--tw-text-opacity))
+}
