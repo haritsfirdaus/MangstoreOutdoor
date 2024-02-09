@@ -29,3 +29,9 @@ require get_template_directory() . '/inc/theme-enqueues.php';
 require get_template_directory() . '/inc/enqueue-scripts-styles.php';
 require get_template_directory() . '/inc/theme-functions.php';
 require get_template_directory() . '/inc/theme-setup.php';
+
+
+/**
+ * Mcd Register acf blocks
+ */
+require get_template_directory() . '/template-parts/blocks/hero-cta-large/init.php';

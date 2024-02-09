@@ -1,0 +1,12 @@
+.hero-cta-large h1 span {
+    font-family: Darker Grotesque, Poppins, Inter;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 90%
+}
+@media (min-width: 1230px) {
+    .hero-cta-large h1 span {
+        font-size: 128px;
+        line-height: 90%
+    }
+}

@@ -6,7 +6,8 @@ module.exports = {
             "*.php",
             "./*.php",
             "./**/*.php",
-            "./template-parts/**/*.php"
+            "./template-parts/**/*.php",
+            "./template-parts/**/**/*.php"
         ],
         { dot: true }
     ),
@@ -31,7 +32,7 @@ module.exports = {
         },
         screens: {
             'md': '768px',
-            'lg': '1024px',
+            'lg': '1230px',
             'xl': '1440px',
             // '2xl': '1440px'
         },

@@ -14,7 +14,11 @@ mix .sass('resources/sass/app.scss', 'dist/css');
 const sassFiles = fastGlob.sync(['resources/sass/single/*.scss']);
 sassFiles.forEach(file => {
   mix.sass(file, `dist/css`);
-})
+});
+const sassBlock = fastGlob.sync(['template-parts/blocks/**/*.scss']);
+sassBlock.forEach(file => {
+  mix.sass(file, `dist/css/blocks`);
+});
 mix.options({
     processCssUrls: false,
     postCss: [
@@ -28,6 +32,10 @@ mix.options({
 const jsFiles = fastGlob.sync(['resources/js/*.js', 'resources/js/paged/*.js']);
 jsFiles.forEach(file => {
   mix.js(file, `dist/js`);
+});
+const jsBlock = fastGlob.sync(['template-parts/blocks/**/*.js']);
+jsBlock.forEach(file => {
+  mix.js(file, `dist/js/blocks`);
 })
 
 mix.version();

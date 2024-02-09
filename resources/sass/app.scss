@@ -69,3 +69,100 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .preloader__show{
     @apply z-[100] opacity-100;
 }
+
+
+// Firman css
+.text-bg-support {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 57%; 
+        padding-top: 16%;
+        left: 0;
+        width: 100%;
+        bottom: 10%; 
+        background-color: #0EC5D7;
+        z-index: -1;
+    }
+    @media (max-width: 768px) { 
+        &::before {
+            padding-top: 10%;
+            top: 50%; 
+        }
+    }
+    @media (max-width: 640px) { 
+        &::before {
+            padding-top: 10%;
+            top: 57%; 
+        }
+    }
+}
+
+.text-bg-about {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 57%; 
+        padding-bottom: 25%;
+        left: 0;
+        width: 100%;
+        bottom: 10%; 
+        background-color: #0EC5D7;
+        z-index: -1;
+    }
+    @media (max-width: 768px) { 
+        &::before {
+            padding-top: 10%;
+            top: 50%; 
+        }
+    }
+    @media (max-width: 640px) { 
+        &::before {
+            padding-bottom: 20%;
+            top: 57%; 
+        }
+    }
+}
+
+.text-bg-project {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 57%; 
+        padding-bottom: 25%;
+        left: 0;
+        width: 100%;
+        bottom: 10%; 
+        background-color: #0EC5D7;
+        z-index: -1;
+    }
+ 
+    @media (max-width: 640px) { 
+        &::before {
+            padding-bottom: 13%;
+            top: 57%; 
+        }
+    }
+}
+
+
+input[type="radio"]{
+    appearance: none;
+   display: none;
+}
+
+input[type="radio"]:checked + div  {
+    background-color: #001F22;
+    
+}
+
+// Firmna css

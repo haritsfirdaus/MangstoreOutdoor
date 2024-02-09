@@ -38,6 +38,12 @@ wp_register_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-
 wp_register_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true );
 
 /**
+ * Mcd Themes Block Scripts & Style Register
+ */
+wp_register_style( 'hero-cta-large', get_stylesheet_directory_uri() . '/dist/css/blocks/hero-cta-large.css', array('app'), _RESOURCES_ASSETS, 'all' );
+wp_register_script( 'hero-cta-large', get_stylesheet_directory_uri() . '/dist/js/blocks/hero-cta-large.js', array('manifest', 'vendor'), _RESOURCES_ASSETS, true );
+
+/**
  * Mcd Themes Scripts Register
  */
 wp_register_script( 'page-default-js', get_stylesheet_directory_uri() . '/dist/js/page-default.js', array('navbar','footer','app'), _RESOURCES_ASSETS, true );

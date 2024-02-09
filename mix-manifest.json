@@ -1,9 +1,11 @@
 {
-    "/dist/js/animated.js": "/dist/js/animated.js?id=62b0555ec53ad40ab919c0463ec66e0f",
+    "/dist/js/animated.js": "/dist/js/animated.js?id=afde34b607f93f354fc29bd8810733ce",
     "/dist/js/app.js": "/dist/js/app.js?id=e9d784c90988bcc7893eb94f75606107",
     "/dist/js/footer.js": "/dist/js/footer.js?id=78bcac27db05faf726172f0402f54be7",
     "/dist/js/navbar.js": "/dist/js/navbar.js?id=2d6bbcc99e268fd2024f8c6af8157292",
     "/dist/js/page-default.js": "/dist/js/page-default.js?id=fe567d1fd6e91431f6dd1044a75c9f9f",
+    "/dist/js/blocks/hero-cta-large.js": "/dist/js/blocks/hero-cta-large.js?id=4449338f92d6ff7f8da6e008a78a6905",
+    "/dist/css/blocks/hero-cta-large.css": "/dist/css/blocks/hero-cta-large.css?id=8899a381ef996f29b1455565e2c5d667",
     "/dist/css/single.css": "/dist/css/single.css?id=9b4ca864539d717314ff20e7d7740a33",
-    "/dist/css/app.css": "/dist/css/app.css?id=7f6ea81cc00531700897afb1016911f6"
+    "/dist/css/app.css": "/dist/css/app.css?id=e89526938b88a38d5654fe6a5ef2d9e7"
 }

@@ -38,6 +38,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9zaW5nbGUvc2luZ2xlLnNjc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vTWFuZ2NvZGluZyBUaGVtZXMvLi9yZXNvdXJjZXMvc2Fzcy9zaW5nbGUvc2luZ2xlLnNjc3M/NzU2MyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/single/single.scss\n");
 
+/***/ }),
+
+/***/ "./template-parts/blocks/hero-cta-large/hero-cta-large.scss":
+/*!******************************************************************!*\
+  !*** ./template-parts/blocks/hero-cta-large/hero-cta-large.scss ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi90ZW1wbGF0ZS1wYXJ0cy9ibG9ja3MvaGVyby1jdGEtbGFyZ2UvaGVyby1jdGEtbGFyZ2Uuc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9NYW5nY29kaW5nIFRoZW1lcy8uL3RlbXBsYXRlLXBhcnRzL2Jsb2Nrcy9oZXJvLWN0YS1sYXJnZS9oZXJvLWN0YS1sYXJnZS5zY3NzP2E5NDIiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./template-parts/blocks/hero-cta-large/hero-cta-large.scss\n");
+
 /***/ })
 
 /******/ 	});
@@ -139,6 +149,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/dist/js/animated": 0,
+/******/ 			"dist/css/blocks/hero-cta-large": 0,
 /******/ 			"dist/css/single": 0,
 /******/ 			"dist/css/app": 0
 /******/ 		};
@@ -190,9 +201,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["dist/css/single","dist/css/app"], () => (__webpack_require__("./resources/js/animated.js")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/single","dist/css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dist/css/single","dist/css/app"], () => (__webpack_require__("./resources/sass/single/single.scss")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/blocks/hero-cta-large","dist/css/single","dist/css/app"], () => (__webpack_require__("./resources/js/animated.js")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/blocks/hero-cta-large","dist/css/single","dist/css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/blocks/hero-cta-large","dist/css/single","dist/css/app"], () => (__webpack_require__("./resources/sass/single/single.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dist/css/blocks/hero-cta-large","dist/css/single","dist/css/app"], () => (__webpack_require__("./template-parts/blocks/hero-cta-large/hero-cta-large.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
