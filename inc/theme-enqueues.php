@@ -40,9 +40,15 @@ wp_register_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-
 /**
  * Mcd Themes Block Scripts & Style Register
  */
-wp_register_style( 'hero-cta-large', get_stylesheet_directory_uri() . '/dist/css/blocks/hero-cta-large.css', array('app'), _RESOURCES_ASSETS, 'all' );
-wp_register_script( 'hero-cta-large', get_stylesheet_directory_uri() . '/dist/js/blocks/hero-cta-large.js', array('manifest', 'vendor'), _RESOURCES_ASSETS, true );
+// wp_register_style( 'hero-cta-large', get_stylesheet_directory_uri() . '/dist/css/blocks/hero-cta-large.css', array('app'), _RESOURCES_ASSETS, 'all' );
+// wp_register_script( 'hero-cta-large', get_stylesheet_directory_uri() . '/dist/js/blocks/hero-cta-large.js', array('manifest', 'vendor'), _RESOURCES_ASSETS, true );
 
+$block_dir = get_template_directory() . '/template-parts/blocks/';
+$blockDir = glob($block_dir . '*', GLOB_ONLYDIR);
+foreach ($blockDir as $file) {
+    wp_register_style( basename($file), get_stylesheet_directory_uri() . '/dist/css/blocks/'.basename($file).'.css', array('app'), _RESOURCES_ASSETS, 'all' );
+    wp_register_script( basename($file), get_stylesheet_directory_uri() . '/dist/js/blocks/'.basename($file).'.js', array('manifest', 'vendor'), _RESOURCES_ASSETS, true );
+}
 /**
  * Mcd Themes Scripts Register
  */

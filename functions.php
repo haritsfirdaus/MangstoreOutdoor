@@ -34,4 +34,8 @@ require get_template_directory() . '/inc/theme-setup.php';
 /**
  * Mcd Register acf blocks
  */
-require get_template_directory() . '/template-parts/blocks/hero-cta-large/init.php';
+$block_dir = get_template_directory() . '/template-parts/blocks/';
+$files = glob($block_dir . '*/init.php');
+foreach ($files as $file) {
+    require $file;
+}

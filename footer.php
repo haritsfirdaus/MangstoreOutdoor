@@ -15,8 +15,8 @@ global $post;
 
 </main> <!-- MAIN END -->
 
-<footer class="container py-[100px] bg-[#001F22] footer">
-    <div class=" grid grid-cols-1 max-md:gap-y-[72px] md:grid-cols-2 lg:grid-cols-3 footer-wrapper">
+<footer class="py-[100px] bg-[#001F22] footer">
+    <div class="container grid grid-cols-1 max-md:gap-y-[72px] md:grid-cols-2 lg:grid-cols-3 footer-wrapper">
         <div class="max-md:hidden flex flex-col justify-between items-start h-full footer-column-1">
             <div class="flex flex-col gap-4 items-start justify-start max-w-[227px] company-info-wrapper">
                 <p class="company-info company-info__address font-darkerGrotesque text-[24px] font-bold leading-[24px] text-[#DDDDDD]">

@@ -14,7 +14,6 @@
         $className .= ' ' . $block['className'];
     }
 
-    // pp($metaInsight);
 ?>
 <div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?> container pb-12">
     <div class="flex flex-col justify-between relative pb-12 text-center lg:flex-row lg:text-start lg:pb-32">
